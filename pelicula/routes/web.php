@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\peliculaController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/',[peliculaController::class,'index'])->name('index');
+
