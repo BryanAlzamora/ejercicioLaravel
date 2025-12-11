@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peliculas - MVC</title>
-    <link rel="stylesheet" href="assets/style.css">
+    @vite(['resources/css/app.css'])
 </head>
 <body>
 <header>
@@ -42,10 +42,20 @@
         </thead>
         <tbody>
             
-        </tbody>
-                     <a href="#" class="btn">Ver detalles</a>
-                        <a href="#" class="btn btn-warning" title="Editar película">Editar</a>
-                        <a href="#" class="btn btn-danger" title="Eliminar película">Eliminar</a>
+            @foreach ( $listaPeliculas as $pelicula )
+            <tr>
+                <td><?= $pelicula->titulo ?></td>
+                <td><?= $pelicula->director ?></td>
+                <td><?= $pelicula->fecha_estreno ?></td>
+                <td><?= $pelicula->duracion_min ?></td>
+                <td><?= $pelicula->clasificacion ?></td>
+                <td><a href="{{ route('detalles',[$pelicula->id]) }}" class="btn">Ver detalles</a></td>
+                <td> <a href="#" class="btn btn-warning" title="Editar película">Editar</a></td>
+                <td><a href="#" class="btn btn-danger" title="Eliminar película">Eliminar</a></td>
+            </tr>    
+            @endforeach
+            
+        </tbody>                  
     </table>
 </div></main>
 <footer>

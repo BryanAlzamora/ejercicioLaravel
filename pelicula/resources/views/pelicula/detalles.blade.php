@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peliculas - MVC</title>
-    <link rel="stylesheet" href="assets/style.css">
+    @vite(['resources/css/app.css'])
 </head>
 <body>
 <header>
@@ -24,27 +24,24 @@
 </header>
 <main class="container">
 <div>
-    <h2>Un Día de Furia</h2> 
+    <h2><?= $pelicula->titulo?></h2> 
     
     <div>
-        <p><strong>Director:</strong> Joel Schumacher</p>
-        <p><strong>Género:</strong> Thriller</p>
-        <p><strong>Fecha de Estreno:</strong> 1993-02-26</p>
-        <p><strong>Duración (min):</strong> 113</p>
-        <p><strong>Clasificación:</strong> 
-            <span>+18</span> 
-        </p>
-        
-                    <p><strong>Sinopsis:</strong></p>
-            <p>Un hombre al borde de un ataque de nervios abandona su coche en un atasco y se embarca en una violenta odisea urbana.</p>
-            </div>
+        <label> Director: <?= $pelicula->director ?></label>
+        <label>Genero: <?= $pelicula->genero ?></label>
+        <label>Sinopsis: <?= $pelicula->sinopsis ?></label>
+        <label>Fecha: <?= $pelicula->fecha_estreno ?></label>
+        <label>Duracion<?= $pelicula->duracion_min ?></label>
+        <label>Clasificacion <?= $pelicula->clasificacion ?></label>
+    </div>
     
     <div>
         <a href="#" class="btn btn-secondary">Volver al listado</a>
         
                     <a href="#" class="btn btn-warning">Editar película</a>
             </div>
-</div></main>
+</div>
+</main>
 <footer>
 	<div class="container">
 		<p>© Películas - 2025</p>
