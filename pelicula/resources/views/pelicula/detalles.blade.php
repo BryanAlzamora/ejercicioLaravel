@@ -28,15 +28,20 @@
     
     <div>
         <label> Director: <?= $pelicula->director ?></label>
+        <br>
         <label>Genero: <?= $pelicula->genero ?></label>
+        <br>
         <label>Sinopsis: <?= $pelicula->sinopsis ?></label>
+        <br>
         <label>Fecha: <?= $pelicula->fecha_estreno ?></label>
+        <br>
         <label>Duracion<?= $pelicula->duracion_min ?></label>
+        <br>
         <label>Clasificacion <?= $pelicula->clasificacion ?></label>
     </div>
     
     <div>
-        <a href="#" class="btn btn-secondary">Volver al listado</a>
+        <a href="{{ route('index') }}" class="btn btn-secondary">Volver al listado</a>
         
                     <a href="#" class="btn btn-warning">Editar película</a>
             </div>

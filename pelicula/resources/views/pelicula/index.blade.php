@@ -16,9 +16,13 @@
         </h1>
         <nav>
             <ul>
-                                    <li>Bienvenido, Administrador</li>
-                    <li><a href="#">Cerrar sesión</a></li>
-                            </ul>
+                @auth
+                    <li>Bienvenido {{ Auth::user()->name }}</li>
+                    <li><a href="{{route('logout')}}" class="btn btn-warning">Cerrar sesion</a></li>
+                @else
+                    <li><a href="{{route('loginForm')}}" class="btn">Loguearse</a></li>
+                @endauth
+            </ul>
         </nav>
     </div>
 </header>
@@ -26,8 +30,10 @@
 <div>
     <div>
         <h2>Películas disponibles</h2>
-                    <a href="#" class="btn btn-success">Añadir Película</a>
-            </div>
+        @auth
+            <a href="{{ route('createForm') }}" class="btn btn-success">Crear pelicula</a>
+        @endauth
+    </div>
     
     <table>
         <thead>
@@ -51,7 +57,7 @@
                 <td><?= $pelicula->clasificacion ?></td>
                 <td><a href="{{ route('detalles',[$pelicula->id]) }}" class="btn">Ver detalles</a></td>
                 <td> <a href="#" class="btn btn-warning" title="Editar película">Editar</a></td>
-                <td><a href="#" class="btn btn-danger" title="Eliminar película">Eliminar</a></td>
+                <td><a href="{{ route('delete',['id'=>$pelicula->id]) }}" class="btn btn-danger" title="Eliminar película">Eliminar</a></td>
             </tr>    
             @endforeach
             
