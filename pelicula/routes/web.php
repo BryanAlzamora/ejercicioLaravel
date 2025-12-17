@@ -12,8 +12,8 @@ Route::get('detalles/{id}',[peliculaController::class,'show'])->name('detalles')
 Route::get('/create',[peliculaController::class,'createForm'])->name('createForm');
 Route::post('/create',[peliculaController::class,'create'])->name('create');
 
-Route::get('/modify',[peliculaController::class,'modidyForm'])->name('modifyForm');
-Route::post('/modify',[peliculaController::class,'modify'])->name('modify');
+Route::get('/modify/{id}',[peliculaController::class,'modifyForm'])->name('modifyForm');
+Route::put('/modify/{id}',[peliculaController::class,'modify'])->name('modify');
 
 
 Route::get('/delete/{id}',[peliculaController::class,'delete'])->name('delete');
@@ -22,3 +22,6 @@ Route::get('/delete/{id}',[peliculaController::class,'delete'])->name('delete');
 Route::get('/loginForm',[loginController::class,'index'])->name('loginForm');
 Route::post('/login',[loginController::class,'validarLogin'])->name('login');
 Route::get('/logout',[loginController::class,'cerrarSesion'])->name('logout');
+
+//Cookie
+Route::post('/cookie',[loginController::class,'cambiarCookie'])->name('cambiarCookie');

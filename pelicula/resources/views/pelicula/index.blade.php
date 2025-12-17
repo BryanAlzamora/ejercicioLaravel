@@ -10,9 +10,9 @@
 <header>
     <div class="container">
         <h1>
-            <a href="#">
-                <!-- Mostrar título según idioma en cookie -->
-                                    Filmak                            </a>
+            <a href="{{ route('index') }}">
+                {{ request()->cookie('idioma') == 'es' ? 'Peliculas' : 'Filmak' }}    
+            </a>
         </h1>
         <nav>
             <ul>
@@ -56,7 +56,7 @@
                 <td><?= $pelicula->duracion_min ?></td>
                 <td><?= $pelicula->clasificacion ?></td>
                 <td><a href="{{ route('detalles',[$pelicula->id]) }}" class="btn">Ver detalles</a></td>
-                <td> <a href="#" class="btn btn-warning" title="Editar película">Editar</a></td>
+                <td> <a href="{{ route('modifyForm',[$pelicula->id]) }}" class="btn btn-warning" title="Editar película">Editar</a></td>
                 <td><a href="{{ route('delete',['id'=>$pelicula->id]) }}" class="btn btn-danger" title="Eliminar película">Eliminar</a></td>
             </tr>    
             @endforeach
@@ -67,12 +67,12 @@
 <footer>
 	<div class="container">
 		<p>© Películas - 2025</p>
-		<form method="post" action="#">
+		<form method="post" action="{{ route('cambiarCookie') }}">
+            @csrf
 			<label>Idioma:</label>
 			<select name="idioma" class="select-inline">
-				<option value="es">Castellano</option>
-                <option value="eu" selected="selected">Euskera</option>
-            
+				<option value="es"{{ request()->cookie('idioma') == 'es' ? 'selected' : '' }}>Castellano</option>
+                <option value="eu" {{ request()->cookie('idioma') == 'eu' ? 'selected' : '' }}>Euskera</option>
 			</select>
 			<button type="submit" class="btn">Cambiar</button>
 		</form>

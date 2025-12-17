@@ -40,12 +40,12 @@ class peliculaController extends Controller
             'genero' => 'required|string|max:225',
             'sinopsis' =>'required|string|max:225',
             'fecha_estreno' => 'required|date',
-            'duracion_min' =>'required|int|min:225',
+            'duracion_min' =>'required|integer|min:10|max:300',
             'clasificacion' => 'required|string|max:225'
         ]);
 
         Pelicula::create($datos);
-        return redirect(route('index'));
+        return redirect()->route('index');
     }
 
     public function modifyForm($id){
@@ -66,6 +66,7 @@ class peliculaController extends Controller
         $pelicula->duracion_min = $request->duracion_min;
         $pelicula->clasificacion = $request->clasificacion;
 
+        $pelicula->save();
         return redirect(route('index'));
     }
 }

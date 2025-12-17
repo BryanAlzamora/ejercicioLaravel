@@ -16,9 +16,14 @@
         </h1>
         <nav>
             <ul>
-                                    <li>Bienvenido, Administrador</li>
-                    <li><a href="#">Cerrar sesión</a></li>
-                            </ul>
+                @auth
+                    Bienvenido {{ Auth::user()->name}}
+                    <a href="{{ route('logout') }}" class="btn-warning"></a>
+                @else
+                    <a href="{{ route('loginForm') }}" class="btn">Loguearse</a>
+                @endauth
+
+            </ul>
         </nav>
     </div>
 </header>
@@ -43,7 +48,7 @@
     <div>
         <a href="{{ route('index') }}" class="btn btn-secondary">Volver al listado</a>
         
-                    <a href="#" class="btn btn-warning">Editar película</a>
+                    <a href="{{route('modifyForm',[$pelicula->id])}}" class="btn btn-warning">Editar película</a>
             </div>
 </div>
 </main>

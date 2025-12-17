@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class loginController extends Controller
 {
@@ -31,5 +32,11 @@ class loginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect(route('index'));
+    }
+
+    public function cambiarCookie(Request $request){
+        $idioma=$request->idioma;
+        
+        return redirect()->back()->withCookie(cookie('idioma',$idioma, 60*24*30));
     }
 }

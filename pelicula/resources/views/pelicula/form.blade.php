@@ -10,11 +10,14 @@
 
 <main class="container">
     
-    <form action="{{ $pelicula->$id ? route('modify',$pelicula->$id) : route('create') }}" method="POST">
+    <form action="{{ $pelicula->id ? route('modify',$pelicula->id) : route('create') }}" method="POST">
         @csrf
         
-        @if ($pelicula->$id)
+        @if ($pelicula->id)
             @method('PUT')
+            <h1>Editar pelicula</h1>
+        @else
+            <h1>Crear pelicula</h1>
         @endif
 
         <label>
@@ -37,19 +40,23 @@
         </label>
         <label>
             Fecha:
-            <input type="text" id="fecha_estreno" name="fecha_estreno" required value="{{$pelicula->fecha_estreno ?? ''}}">
+            <input type="date" id="fecha_estreno" name="fecha_estreno" required value="{{$pelicula->fecha_estreno ?? ''}}">
         </label>
         
         <label>
             Duracion:
-            <input type="text" id="duracion_min" name="duracion_min" required value="{{$pelicula->duracion_min ?? ''}}">
+            <input type="number" id="duracion_min" name="duracion_min" required value="{{$pelicula->duracion_min ?? ''}}">
         </label>
         <label>
             Clasificacion:
             <input type="text" id="clasificacion" name="clasificacion" required value="{{$pelicula->clasificacion ?? ''}}">
         </label>
 
-        <button type="submit" class="btn"> Crear</button>
+        @if($pelicula->id)
+            <button type="submit" class="btn"> Editar</button>
+        @else
+            <button type="submit" class="btn"> Crear</button>
+        @endif
         <a href="{{ route('index') }}" class="btn">Volver al inicio</a>
     </form>
 </main>
